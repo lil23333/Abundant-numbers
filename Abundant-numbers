@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>mrBin</title>
+<style>
+body {
+background-color : #5F9EA0;
+}
+div {
+border: 1px solid #333;
+box-shadow: 8px 5px 8px;
+heigth : 30px;
+width  : 50px;
+backgroung-color : #F7F8A0;
+}
+.color1 {
+background-color : #DC143C;
+}
+
+.hh {
+font-weigth : bold;
+font-size : 24 px;
+}
+
+.color2 {
+background-color : #2F4F4F;
+}
+.hidden {
+display : none;
+}
+
+table {
+border-collapse: collapse;
+border : 1 px solid grey;
+}
+
+td {
+padding: 10px 20px;
+border : 1px solid grey;
+background-color : #F0F8FF;
+}
+
+.div1 {
+heigth : 30px;
+width  : 50px;
+background-color : #F0F8FF;
+position : relative;
+}
+.div2 {
+heigth : 20px;
+width  : 40px;
+background-color : #474a94;
+
+}
+.div3 {
+heigth : 10px;
+width  : 30px;
+background-color : #5757B4;
+position : absolute;
+}
+.div4 {
+heigth : 40px;
+width  : 60px;
+background-color : #E9F089;
+position : absolute;
+}
+.closeDiv {
+margin-left: 15px;
+color: white;
+font-waight: bold;
+cursor: pointer;
+transition: 0.3s;
+}
+
+</style>
+
+</head>
+
+<body>
+<script src = 'https://code.jquery.com/jquery-3.7.1.js'></script>
+<input id = 'input1'>
+<input id = 'input2'>
+<button>button</button>
+<p>Abundant numbers - </p>
+<script>
+let input1 = document.querySelector('#input1');
+let input2 = document.querySelector('#input2');
+let button = document.querySelector('button');
+let p = document.querySelector('p');
+
+button.addEventListener('click',()=> {
+    let inp1 = +input1.value;
+    let inp2 = +input2.value;
+    let max = Math.max(inp1,inp2);
+    let min = Math.min(inp1,inp2);
+    let arrOfInp = [];
+    for (let i = min; i <= max; i++) {
+        arrOfInp.push(i);
+    };
+
+
+    let arrWithDeviders = arrOfInp.map(el=> {
+        let arr = [];
+        for (let i = 0; i < el; i++) {
+        let n = el % i;
+        if (n == 0) {
+        arr.push(i)
+        }}
+        return arr 
+        });
+
+    
+    let count = arrWithDeviders.map(el=> {
+    let sum = 0;
+    el.forEach(item =>{
+    sum += item
+    });
+    return sum
+    });
+    console.log(count)   
+
+    let obj = {};
+    arrOfInp.forEach((key,i)=> obj[key] = count[i]);
+    console.log(obj);
+    function func (obj) {
+    let result = [];
+    for (let key in obj) { let numberKey = +key;
+    if ([obj[key]] > numberKey) {
+        result.push(numberKey)
+    }
+    }
+    return result;
+    }
+    let abNumbers = func(obj)
+    
+    p.textContent = p.textContent + abNumbers;
+    
+ });
+</script>
+</body>
+</html>
